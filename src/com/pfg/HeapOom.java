@@ -3,15 +3,17 @@ package com.pfg;
 import java.util.ArrayList;
 import java.util.List;
 
+// VM argument:-verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:PermSize=10M -XX:MaxPermSize=10M 
+// -XX:+PrintGCDetails -XX:SurvivorRatio=8 -Xss128k -XX:+HeapDumpOnOutOfMemoryError
+// jdk 1.8
 public class HeapOom {
 
-	// case 1
+	// case 1: OutOfMemoryError
 	static class OOMObject {
 		
 	}
-	
 
-	// case 2
+	// case 2: StackOverflowError
 	private int stackLenght = 1;
 	public void stackLeak() {
 		stackLenght++;
@@ -50,7 +52,7 @@ public class HeapOom {
 			throw e;
 		}*/
 		
-		// case 3
+		// case 3: 方法区
 		/*String str1 = new StringBuilder("计算机").append("软件").toString();
 		System.out.println(str1.intern() == str1);
 		
@@ -63,7 +65,7 @@ public class HeapOom {
 		String def = "abcdef";
 		System.out.println(abc == def);*/
 		
-		// case 4
+		// case 4: 验证对象存在相互引用时也会被GC回收，说明不是用引用计数方法来判定
 		testGC();
 	}
 
