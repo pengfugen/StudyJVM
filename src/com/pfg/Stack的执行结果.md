@@ -1,3 +1,9 @@
+运行参数：-verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:PermSize=10M -XX:MaxPermSize=10M -XX:+PrintGCDetails -XX:SurvivorRatio=8 -Xss128k -XX:+HeapDumpOnOutOfMemoryError  
+-Xms：初始堆大小  
+-Xmx：最大堆大小  
+-Xmn：年轻代大小  
+-Xss：每个线程的栈大小  
+
 Exception in thread "main" java.lang.OutOfMemoryError: GC overhead limit exceeded  
 意思是程序申请的内存过大导致GC一直在运行以至于程序无法继续执行所引发的问题。  
 执行结果如下：  
