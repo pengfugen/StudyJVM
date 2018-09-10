@@ -42,3 +42,18 @@ Heap
  Metaspace       used 2785K, capacity 4486K, committed 4864K, reserved 1056768K
   class space    used 298K, capacity 386K, committed 512K, reserved 1048576K
 ```
+### GC Root第三种情况的运行结果：
+```
+[GC (System.gc()) [PSYoungGen: 1149K->712K(9216K)] 124029K->123600K(203776K), 0.0015286 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+// 回收了40M
+[Full GC (System.gc()) [PSYoungGen: 712K->0K(9216K)] [ParOldGen: 122888K->82548K(194560K)] 123600K->82548K(203776K), [Metaspace: 2778K->2778K(1056768K)], 0.0070547 secs] [Times: user=0.00 sys=0.00, real=0.01 secs] 
+Heap
+ PSYoungGen      total 9216K, used 82K [0x00000000ff600000, 0x0000000100000000, 0x0000000100000000)
+  eden space 8192K, 1% used [0x00000000ff600000,0x00000000ff614920,0x00000000ffe00000)
+  from space 1024K, 0% used [0x00000000ffe00000,0x00000000ffe00000,0x00000000fff00000)
+  to   space 1024K, 0% used [0x00000000fff00000,0x00000000fff00000,0x0000000100000000)
+ ParOldGen       total 194560K, used 82548K [0x00000000f3800000, 0x00000000ff600000, 0x00000000ff600000)
+  object space 194560K, 42% used [0x00000000f3800000,0x00000000f889d068,0x00000000ff600000)
+ Metaspace       used 2785K, capacity 4486K, committed 4864K, reserved 1056768K
+  class space    used 298K, capacity 386K, committed 512K, reserved 1048576K
+```
