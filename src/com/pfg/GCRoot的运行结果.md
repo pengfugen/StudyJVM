@@ -58,9 +58,9 @@ Heap
   class space    used 298K, capacity 386K, committed 512K, reserved 1048576K
 ```
 #### 问题
-// GC Root的第三种情况
-	private final static GCRoot root3 = new GCRoot(80);  
- 上述代码不加static即：  
+ // GC Root的第三种情况  
+ private final static GCRoot root3 = new GCRoot(80);  
+ 若上述代码不加static即：  
  private final GCRoot root3 = new GCRoot(80);  
  出现如下错误： 
  ```
