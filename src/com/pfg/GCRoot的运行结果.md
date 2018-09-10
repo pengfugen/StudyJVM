@@ -5,7 +5,7 @@
 遇到的问题：  
 因为例子中有80M的内存要分配，-Xmn100M新生代指定100M，若-Xms和-Xmx小于180M就会发生(OutOfMemoryError: Java heap space)，说明80M是分配到老生代中。
 
-### 可作为GC Root的第一种情况的结果：  
+### GC Root的第一种情况的结果：  
 ```
 method1调用System.gc：  
 [GC (System.gc()) [PSYoungGen: 3276K->768K(92160K)] 85196K->82696K(194560K), 0.0017456 secs] [Times: user=0.01 sys=0.00, real=0.00 secs] 
@@ -26,5 +26,18 @@ Heap
   object space 102400K, 0% used [0x00000000f3800000,0x00000000f389d040,0x00000000f9c00000)
  Metaspace       used 2786K, capacity 4486K, committed 4864K, reserved 1056768K
   class space    used 298K, capacity 386K, committed 512K, reserved 1048576K
-
+```
+### GC Root第二种情况的运行结果：
+```
+[GC (System.gc()) [PSYoungGen: 1149K->768K(9216K)] 42109K->41736K(203776K), 0.0015844 secs] [Times: user=0.00 sys=0.01, real=0.00 secs] 
+[Full GC (System.gc()) [PSYoungGen: 768K->0K(9216K)] [ParOldGen: 40968K->628K(194560K)] 41736K->628K(203776K), [Metaspace: 2778K->2778K(1056768K)], 0.0095457 secs] [Times: user=0.00 sys=0.00, real=0.01 secs] 
+Heap
+ PSYoungGen      total 9216K, used 82K [0x00000000ff600000, 0x0000000100000000, 0x0000000100000000)
+  eden space 8192K, 1% used [0x00000000ff600000,0x00000000ff614930,0x00000000ffe00000)
+  from space 1024K, 0% used [0x00000000ffe00000,0x00000000ffe00000,0x00000000fff00000)
+  to   space 1024K, 0% used [0x00000000fff00000,0x00000000fff00000,0x0000000100000000)
+ ParOldGen       total 194560K, used 82548K [0x00000000f3800000, 0x00000000ff600000, 0x00000000ff600000)
+  object space 194560K, 42% used [0x00000000f3800000,0x00000000f889d050,0x00000000ff600000)
+ Metaspace       used 2785K, capacity 4486K, committed 4864K, reserved 1056768K
+  class space    used 298K, capacity 386K, committed 512K, reserved 1048576K
 ```
