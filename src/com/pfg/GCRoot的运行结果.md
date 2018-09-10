@@ -1,5 +1,7 @@
 ### 参数
 -verbose:gc -Xms200M -Xmx200M -Xmn100M -XX:+PrintGCDetails -XX:SurvivorRatio=8 -Xss128k -XX:+HeapDumpOnOutOfMemoryError  
+或  
+-verbose:gc -Xms100M -Xmx100M -Xmn10M -XX:+PrintGCDetails -XX:SurvivorRatio=8 -Xss128k -XX:+HeapDumpOnOutOfMemoryError  
 遇到的问题：  
 因为例子中有80M的内存要分配，-Xmn100M新生代指定100M，若-Xms和-Xmx小于180M就会发生(OutOfMemoryError: Java heap space)，说明80M是分配到老生代中。
 
