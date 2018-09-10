@@ -30,6 +30,7 @@ Heap
 ### GC Root第二种情况的运行结果：
 ```
 [GC (System.gc()) [PSYoungGen: 1149K->768K(9216K)] 42109K->41736K(203776K), 0.0015844 secs] [Times: user=0.00 sys=0.01, real=0.00 secs] 
+// root = null;然后调用System.gc()回收了40M资源
 [Full GC (System.gc()) [PSYoungGen: 768K->0K(9216K)] [ParOldGen: 40968K->628K(194560K)] 41736K->628K(203776K), [Metaspace: 2778K->2778K(1056768K)], 0.0095457 secs] [Times: user=0.00 sys=0.00, real=0.01 secs] 
 Heap
  PSYoungGen      total 9216K, used 82K [0x00000000ff600000, 0x0000000100000000, 0x0000000100000000)
