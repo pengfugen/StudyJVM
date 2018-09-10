@@ -33,9 +33,9 @@ public static void testAllocation() {
 	}
   
 结果：  
-3M不被认为是大对象，所以还是分配到新生代中的Eden区，但是这时新生代容量不够了(Eden+Survivor0区应该小于9M，而且Survivor1空间只有1M)，会触发GC，但是allocation1、allocation2和allocation3  
-作为GC Root是需要存活的，这时Survivor1空间只有1M所以只能通过分配担保机制提前转移到老年代中(即6772k),  
-所以新生代中又有分配3M的空间了。
+3M不被认为是大对象，所以还是分配到新生代中的Eden区，但是这时新生代容量不够了(Eden+Survivor0区应该小于9M，  
+而且Survivor1空间只有1M)，会触发GC，但是allocation1、allocation2和allocation3作为GC Root是需要存活的，  
+这时Survivor1空间只有1M所以只能通过分配担保机制提前转移到老年代中(即6772k),所以新生代中又有分配3M的空间了。  
 [GC (Allocation Failure) [PSYoungGen: 7293K->760K(9216K)] 7293K->6912K(19456K), 0.0040521 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
 [Full GC (Ergonomics) [PSYoungGen: 760K->0K(9216K)] [ParOldGen: 6152K->6772K(10240K)] 6912K->6772K(19456K), [Metaspace: 2783K->2783K(1056768K)], 0.0074571 secs] [Times: user=0.05 sys=0.00, real=0.01 secs] 
 Heap
