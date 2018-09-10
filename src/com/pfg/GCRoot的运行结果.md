@@ -1,5 +1,5 @@
 ### 参数
--verbose:gc -Xms200M -Xmx200M -Xmn100M -XX:+PrintGCDetails -XX:SurvivorRatio=8 -Xss128k -XX:+HeapDumpOnOutOfMemoryError  
+-verbose:gc -Xms200M -Xmx200M -Xmn10M -XX:+PrintGCDetails -XX:SurvivorRatio=8 -Xss128k -XX:+HeapDumpOnOutOfMemoryError  
 或  
 -verbose:gc -Xms100M -Xmx100M -Xmn10M -XX:+PrintGCDetails -XX:SurvivorRatio=8 -Xss128k -XX:+HeapDumpOnOutOfMemoryError  
 遇到的问题：  
