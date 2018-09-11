@@ -68,6 +68,7 @@ Heap
   eden space 8192K, 38% used [0x00000000ff600000,0x00000000ff914930,0x00000000ffe00000)
   from space 1024K, 99% used [0x00000000ffe00000,0x00000000ffefe030,0x00000000fff00000)
   to   space 1024K, 0% used [0x00000000fff00000,0x00000000fff00000,0x0000000100000000)
+ // 老年代中的3M时allocation3的内存，allocation4分配在Eden中
  ParOldGen       total 10240K, used 3256K [0x00000000fec00000, 0x00000000ff600000, 0x00000000ff600000)
   object space 10240K, 31% used [0x00000000fec00000,0x00000000fef2e010,0x00000000ff600000)
  Metaspace       used 2785K, capacity 4486K, committed 4864K, reserved 1056768K
@@ -76,6 +77,6 @@ Heap
 ### 注意
 内存分配原则
 1. 优先分配到新生代中Eden区，当Eden区不够时可能发生GC也可能接下来的内存分配直接分配到老年代中，当发生GC时会检查Survivor1能否足够复制算法，不够的话
-   需要内存担保原则分配到老年代中。
+   需要内存担保原则分配到老年代中或者把前面的内存搬迁到老年代中然后在Eden区继续分配新的内存。
 2. 大对象直接分配到老年代
 3. 长期存活的对象进入老年代
